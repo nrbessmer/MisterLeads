@@ -1,0 +1,57 @@
+/*
+  ==============================================================================
+    Mister Leads - PluginProcessor.h
+    (c)(p) 2026 Tully EDM Vibe
+  ==============================================================================
+*/
+#pragma once
+#include <juce_audio_processors/juce_audio_processors.h>
+#include <juce_audio_utils/juce_audio_utils.h>
+#include "TullySynth.h"
+#include "SynthParams.h"
+#include "TullyUI.h"
+#include "LeadPresets.h"
+
+class MisterLeadsProcessor : public juce::AudioProcessor
+{
+public:
+    MisterLeadsProcessor();
+    ~MisterLeadsProcessor() override = default;
+
+    void prepareToPlay (double sampleRate, int samplesPerBlock) override;
+    void releaseResources() override {}
+    bool isBusesLayoutSupported (const BusesLayout& layouts) const override;
+    void processBlock (juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
+    using AudioProcessor::processBlock;
+
+    juce::AudioProcessorEditor* createEditor() override;
+    bool hasEditor() const override { return true; }
+    const juce::String getName() const override { return "Mister Leads"; }
+    bool acceptsMidi() const override { return true; }
+    bool producesMidi() const override { return false; }
+    bool isMidiEffect() const override { return false; }
+    double getTailLengthSeconds() const override { return 3.0; }
+
+    int getNumPrograms() override { return (int) mld::presets().size(); }
+    int getCurrentProgram() override { return currentPreset; }
+    void setCurrentProgram (int i) override { loadPreset (i); }
+    const juce::String getProgramName (int i) override { return juce::isPositiveAndBelow (i, getNumPrograms()) ? mld::presets()[(size_t) i].name : ""; }
+    void changeProgramName (int, const juce::String&) override {}
+
+    void getStateInformation (juce::MemoryBlock& destData) override;
+    void setStateInformation (const void* data, int sizeInBytes) override;
+
+    void loadPreset (int index);
+    int  getCurrentPreset() const noexcept { return currentPreset; }
+
+    juce::AudioProcessorValueTreeState apvts;
+    tsyn::Engine engine;
+    juce::MidiKeyboardState keyboardState;
+    tui::ScopeBuffer scope;
+
+private:
+    static juce::AudioProcessorValueTreeState::ParameterLayout createLayout();
+    tsyn::ParamReader reader;
+    int currentPreset = 0;
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MisterLeadsProcessor)
+};
