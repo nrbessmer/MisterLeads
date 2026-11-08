@@ -30,6 +30,7 @@ bool MisterLeadsProcessor::isBusesLayoutSupported (const BusesLayout& l) const
 
 void MisterLeadsProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
+    monoScratchBuf.assign ((size_t) juce::jmax (1, samplesPerBlock) * 2, 0.0f);
     engine.prepare (sampleRate, juce::jmax (1, samplesPerBlock));
     keyboardState.reset();
 }
@@ -59,8 +60,7 @@ void MisterLeadsProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce:
 
     float* L = buffer.getWritePointer (0);
     float* R = nch > 1 ? buffer.getWritePointer (1) : nullptr;
-    juce::HeapBlock<float> monoR;
-    if (R == nullptr) { monoR.allocate ((size_t) n, true); R = monoR.get(); }
+    if (R == nullptr) { R = monoScratch (n); std::fill (R, R + n, 0.0f); }   // preallocated: no audio-thread malloc
 
     // sample-accurate: render up to each MIDI event, then apply it
     int pos = 0;

@@ -53,5 +53,10 @@ private:
     static juce::AudioProcessorValueTreeState::ParameterLayout createLayout();
     tsyn::ParamReader reader;
     int currentPreset = 0;
+
+    // Scratch for a mono output bus (the engines are stereo). Sized in prepareToPlay;
+    // only an oversized host block ever grows it.
+    std::vector<float> monoScratchBuf;
+    float* monoScratch (int n) { if ((int) monoScratchBuf.size() < n) monoScratchBuf.resize ((size_t) n); return monoScratchBuf.data(); }
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MisterLeadsProcessor)
 };

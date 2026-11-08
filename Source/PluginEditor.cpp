@@ -12,6 +12,7 @@ MisterLeadsEditor::MisterLeadsEditor (MisterLeadsProcessor& p)
       presetBar (mld::presets()), scope (p.scope, tui::Col::pink), panel (p.apvts),
       keyboard (p.keyboardState, juce::MidiKeyboardComponent::horizontalKeyboard)
 {
+    lnf.setAccent (tui::Col::pink);
     setLookAndFeel (&lnf);
     logo = juce::ImageCache::getFromMemory (BinaryData::TullyLogo_png, BinaryData::TullyLogo_pngSize);
 
@@ -47,7 +48,7 @@ void MisterLeadsEditor::timerCallback()
 
 void MisterLeadsEditor::paint (juce::Graphics& g)
 {
-    g.fillAll (tui::Col::bg);
+    neon::paintBackdrop (g, getLocalBounds(), tui::Col::pink, backdrop);
     tui::paintHeader (g, logo, "MISTER LEADS", "supersaw, psy, acid, FM, pluck + vintage mono", tui::Col::pink);
     tui::paintFooter (g, getLocalBounds().removeFromBottom (18).reduced (12, 0));
 }
