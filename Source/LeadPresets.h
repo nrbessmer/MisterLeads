@@ -152,6 +152,38 @@ namespace mld
           "voice_mode=Mono osc1_wave=Saw osc1_unison=2 osc1_detune=0.25 osc2_wave=Saw osc2_fine=12 osc2_level=0.8 cutoff=1500 reso=0.2 flt_env=0.1 chorus=0.2 volume=1.8" },
         { "Distorted Saw", "Hard", "Simple saw lead through heavy soft-clip.",
           "voice_mode=Mono osc1_wave=Saw osc1_unison=3 osc1_detune=0.2 cutoff=5000 drive_type=Soft drive=0.7 reverb=0.2 volume=-5.8" },
+
+        // ------------------------------------------------------------------ MELODIC TECHNO (new in 1.2)
+        { "Melodic Techno Lead", "Melodic Techno", "Dark saw-and-pulse mono lead; the filter breathes slowly under a long dotted delay.",
+          "voice_mode=Mono glide=0.03 osc1_wave=Saw osc1_unison=2 osc1_detune=0.15 osc2_wave=Pulse osc2_oct=-1 osc2_level=0.35 osc2_shape=0.3 flt_type=LP_12 cutoff=1400 reso=0.35 flt_env=0.4 flt_d=0.45 flt_s=0.25 lfo_shape=Triangle lfo_rate=0.15 lfo_cutoff=0.25 delay=0.3 delay_time=1/8D delay_fb=0.5 reverb=0.4 reverb_size=0.85 width=1.2 volume=-6.8" },
+        { "Afterhours Pulse", "Melodic Techno", "Hollow pulse lead with a slow PWM wobble; sits behind a vocal without fighting it.",
+          "voice_mode=Mono osc1_wave=Pulse osc1_shape=0.35 osc1_level=0.85 lfo_shape=Triangle lfo_rate=0.4 lfo_shapemod=0.5 cutoff=2200 reso=0.25 flt_env=0.25 flt_d=0.6 flt_s=0.4 chorus=0.25 delay=0.25 delay_time=1/4D delay_fb=0.45 reverb=0.45 reverb_size=0.8 volume=-5.4" },
+        { "Hypnotic Sequence Lead", "Melodic Techno", "Short resonant saw blip for repeating 16th-note figures; delay fills the gaps.",
+          "osc1_wave=Saw osc1_unison=1 cutoff=600 reso=0.5 flt_env=0.55 flt_d=0.16 flt_s=0 amp_d=0.22 amp_s=0 amp_r=0.12 flt_key=0.6 delay=0.35 delay_time=1/16D delay_fb=0.55 reverb=0.3 width=1.1 volume=5.3" },
+
+        // ------------------------------------------------------------------ FUTURE & HYPERPOP (new in 1.2)
+        { "Hyperpop Squeal", "Future & Hyperpop", "Bright folded square an octave up, quick vibrato, pitch-bend friendly (12 semitones).",
+          "voice_mode=Mono glide=0.02 bend_range=12 osc1_wave=Fold osc1_shape=0.6 osc2_wave=Square osc2_oct=1 osc2_level=0.3 cutoff=9000 reso=0.15 flt_env=0.1 lfo_rate=6.5 lfo_pitch=0.12 lfo_delay=0.25 drive_type=Soft drive=0.25 delay=0.15 delay_time=1/16 reverb=0.2 volume=-6.5" },
+        { "Future Garage Vox Lead", "Future & Hyperpop", "Band-pass sine/FM lead with a vocal, chopped quality.",
+          "osc1_wave=FM fm_ratio=2:1 osc1_shape=0.35 osc2_wave=Sine osc2_level=0.4 flt_type=Band cutoff=1600 reso=0.45 flt_env=0.3 flt_d=0.3 flt_s=0.3 amp_d=0.4 amp_s=0.5 chorus=0.3 reverb=0.4 reverb_size=0.7 width=1.2 volume=5.5" },
+        { "Wobble Pluck Lead", "Future & Hyperpop", "Supersaw pluck with a 1/8 filter wobble: instant future-bass movement.",
+          "osc1_wave=SuperSaw osc1_detune=0.45 cutoff=1800 reso=0.3 flt_env=0.4 flt_d=0.3 flt_s=0.3 lfo_shape=Sine lfo_sync=1/8 lfo_cutoff=0.45 amp_d=0.6 amp_s=0.5 spread=0.9 chorus=0.2 reverb=0.3 width=1.25 volume=-2.1" },
+
+        // ------------------------------------------------------------------ CINEMATIC (new in 1.2)
+        { "Solo Cello Lead", "Cinematic", "Bowed, slow-attack saw with delayed vibrato. Play it low and legato.",
+          "voice_mode=Legato glide=0.06 osc1_wave=Saw osc1_level=0.8 osc2_wave=Pulse osc2_level=0.25 osc2_shape=0.2 osc2_fine=-5 flt_type=LP_12 cutoff=2400 reso=0.15 flt_env=0.2 flt_a=0.2 flt_d=0.8 flt_s=0.5 flt_key=0.7 amp_a=0.12 amp_s=0.9 amp_r=0.5 lfo_rate=5.2 lfo_pitch=0.08 lfo_delay=0.5 reverb=0.4 reverb_size=0.8 volume=-6.3" },
+        { "Distant Horn", "Cinematic", "Soft brass-like swell with a rising filter, heard far away in a hall.",
+          "osc1_wave=Saw osc1_unison=2 osc1_detune=0.12 osc2_wave=Saw osc2_oct=-1 osc2_level=0.4 cutoff=900 reso=0.1 flt_env=0.45 flt_a=0.25 flt_d=1.0 flt_s=0.5 amp_a=0.15 amp_r=0.8 reverb=0.6 reverb_size=0.95 width=1.1 volume=-8.8" },
+        { "Glass Flute", "Cinematic", "Breathy sine-and-noise flute with a gentle chiff on each note.",
+          "voice_mode=Mono glide=0.03 osc1_wave=Sine osc1_level=0.85 osc2_wave=Triangle osc2_oct=1 osc2_level=0.15 noise=0.12 cutoff=5000 reso=0.1 flt_env=0.2 flt_d=0.12 flt_s=0.6 amp_a=0.04 amp_r=0.3 lfo_rate=4.8 lfo_pitch=0.05 lfo_delay=0.4 reverb=0.45 reverb_size=0.75 volume=-6.4" },
+
+        // ------------------------------------------------------------------ CLASSIC REVISITED (new in 1.2)
+        { "Stab Lead '92", "Classic Revisited", "Rave-era detuned square stab with a fast filter snap. Play chords.",
+          "osc1_wave=Square osc1_unison=3 osc1_detune=0.3 osc2_wave=Saw osc2_semi=7 osc2_level=0.4 cutoff=1200 reso=0.35 flt_env=0.6 flt_d=0.18 flt_s=0.1 amp_d=0.3 amp_s=0.3 amp_r=0.2 reverb=0.25 delay=0.15 delay_time=1/8 volume=-1.5" },
+        { "Sync Sweep Mono", "Classic Revisited", "Bright two-oscillator mono lead; the filter envelope sweeps every note open.",
+          "voice_mode=Mono glide=0.04 osc1_wave=Saw osc2_wave=Saw osc2_semi=12 osc2_fine=9 osc2_level=0.5 cutoff=700 reso=0.4 flt_env=0.7 flt_d=0.5 flt_s=0.35 drive_type=Soft drive=0.2 delay=0.2 delay_time=1/8D reverb=0.2 volume=-3.3" },
+        { "Soft Square Whistle", "Classic Revisited", "Rounded square lead with vibrato, made for simple hooky melodies.",
+          "voice_mode=Mono glide=0.05 osc1_wave=Square osc1_level=0.8 osc2_wave=Sine osc2_oct=1 osc2_level=0.2 cutoff=2600 reso=0.1 flt_env=0.15 lfo_rate=5.5 lfo_pitch=0.07 lfo_delay=0.3 chorus=0.2 delay=0.2 delay_time=1/4 reverb=0.3 volume=-7.5" },
         };
         return p;
     }
