@@ -5,6 +5,7 @@
   ==============================================================================
 */
 #include "PluginProcessor.h"
+#include "TullyLicence.h"
 #include "PluginEditor.h"
 
 juce::AudioProcessorValueTreeState::ParameterLayout MisterLeadsProcessor::createLayout()
@@ -18,6 +19,8 @@ MisterLeadsProcessor::MisterLeadsProcessor()
     : AudioProcessor (BusesProperties().withOutput ("Output", juce::AudioChannelSet::stereo(), true)),
       apvts (*this, nullptr, "PARAMS", createLayout())
 {
+    tully::licence ("Mister Leads");   // purchase activation (TullyLicence.h)
+
     reader.attach (apvts);
     loadPreset (0);
 }
@@ -37,6 +40,8 @@ void MisterLeadsProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
 
 void MisterLeadsProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midi)
 {
+    if (! tully::licence().ok()) { buffer.clear(); midi.clear(); return; }   // not activated yet: silent
+
     juce::ScopedNoDenormals nd;
     const int n = buffer.getNumSamples();
     const int nch = buffer.getNumChannels();

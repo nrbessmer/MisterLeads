@@ -5,6 +5,7 @@
   ==============================================================================
 */
 #include "PluginEditor.h"
+#include "TullyLicence.h"
 #include "BinaryData.h"
 
 MisterLeadsEditor::MisterLeadsEditor (MisterLeadsProcessor& p)
@@ -36,6 +37,8 @@ MisterLeadsEditor::MisterLeadsEditor (MisterLeadsProcessor& p)
 
     setSize (1100, 680);
     startTimerHz (30);
+
+    tully::addActivation (*this);   // activation screen until this Mac is licensed
 }
 
 MisterLeadsEditor::~MisterLeadsEditor() { stopTimer(); setLookAndFeel (nullptr); }
